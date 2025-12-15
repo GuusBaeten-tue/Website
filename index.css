@@ -10,6 +10,9 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* *******************************
+ Top Navigation Menu to other pages
+********************************* */
 .top-nav {
   position: fixed;
   top: 10px;
@@ -35,11 +38,13 @@ html, body {
   transform: scale(1.2);
 }
 
-
 :root {
   --fade-duration: 1.6s;
 }
 
+/* **********************
+ Layout setting per page
+************************* */
 .page {
   position: relative;
   height: 100vh;
@@ -48,6 +53,7 @@ html, body {
   scroll-snap-align: start;
 }
 
+/* Background */
 .bg {
   position: absolute;
   inset: 0;
@@ -56,20 +62,48 @@ html, body {
   object-fit: cover;
   z-index: 0;
 }
-
 .page::before {
   content: "";
   position: absolute;
   inset: 0;
   /*background: rgba(0,0,0,0.3);*/
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.6);
   z-index: 1;
 }
 
+/* Text in page */
 .content {
   position: relative;
   z-index: 2;
-  color: white;
+  color: black;
   text-shadow: 0 2px 8px rgba(0,0,0,0.7);
   padding: 1rem 2rem;
+}
+
+.page-contact .content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ****************
+ Email contact info
+***************** */
+.contact-email {
+  position: fixed;
+  bottom: 16px;
+  left: 48%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 9999;
+}
+
+.contact-discord {
+  position: fixed;
+  bottom: 16px;
+  left: 52%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 9999;
 }

@@ -1,3 +1,5 @@
+console.log("SCRIPT LOADED");
+
 const pages = document.querySelectorAll('.page');
 const audios = document.querySelectorAll('audio');
 const dots = document.querySelectorAll('.dot');
@@ -22,8 +24,9 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.6});
 
 pages.forEach(page => observer.observe(page));
-
-// Navigation dots click
+/*****************************************
+ * Navigation dots click
+ *****************************************/
 dots.forEach(dot => {
   dot.addEventListener('click', () => {
     const target = document.querySelector(dot.dataset.target);
@@ -31,58 +34,81 @@ dots.forEach(dot => {
   });
 });
 
-/******************************
- * GLOBAL BACKGROUND AUDIO PLAY
- ******************************/
-const audio = document.getElementById("bg-audio");
-let audioStarted = false;
+/*****************************************
+ * MASTER AUDIO TOGGLE BUTTON WITH FADE
+ *****************************************/
+ document.addEventListener("DOMContentLoaded", () => {
 
-function startAudio() {
-  if (audioStarted || !audio) return;
-  audioStarted = true;
+   const audio = document.getElementById("bg-audio");
+   const btn = document.getElementById("audio-toggle");
 
-  audio.volume = 0; // start silent
-  audio.play().catch(err => console.warn("Autoplay blocked:", err));
+   if (!audio) {
+     console.error("Audio element #bg-audio NOT FOUND");
+     return;
+   } else {
+     console.log("Audio element found");
+   }
 
-  // Smooth fade-in
-  const stepTime = 50;
-  const steps = fadeInDuration / stepTime;
-  const volumeStep = initialVolume / steps;
+   if (!btn) {
+     console.error("Button #audio-toggle NOT FOUND");
+     return;
+   } else {
+     console.log("Button element found");
+   }
 
-  const fadeInterval = setInterval(() => {
-    audio.volume = Math.min(audio.volume + volumeStep, initialVolume);
-    if (audio.volume >= initialVolume) clearInterval(fadeInterval);
-  }, stepTime);
+   let audioPlaying = false;
 
-  // Remove listeners once triggered
-  removeAudioListeners();
-}
-
-// Remove triggers after start
-function removeAudioListeners() {
-  ["wheel", "touchmove", "click", "keydown"].forEach(evt =>
-    document.removeEventListener(evt, startAudio)
-  );
-}
-
-/*
-  Active gesture triggers for all platforms:
-  - wheel: mouse scroll (desktop)
-  - touchmove: finger scroll (mobile)
-  - click: any click (button or anywhere)
-  - keydown: PageDown/Arrow scroll
-*/
-document.addEventListener("wheel", startAudio, { passive: true });
-document.addEventListener("touchmove", startAudio, { passive: true });
-document.addEventListener("click", startAudio);
-document.addEventListener("keydown", startAudio);
+   // Settings
+   const targetVolume = 0.45;   // Volume when playing
+   const fadeDuration = 1000;   // ms fade in/out
 
 
+   // Fade function
+   function fadeAudio(target) {
+     const stepTime = 50;
+     const steps = fadeDuration / stepTime;
+     const volumeStep = (target - audio.volume) / steps;
 
-// Enable audio button
-document.getElementById('enable-sound').addEventListener('click', () => {
-  if (activeAudio) activeAudio.play();
-  else audios[0].play();
+     const interval = setInterval(() => {
+       audio.volume = Math.min(Math.max(audio.volume + volumeStep, 0), targetVolume);
 
-  document.getElementById('enable-sound').style.display = 'none';
-});
+       if ((volumeStep > 0 && audio.volume >= target) ||
+           (volumeStep < 0 && audio.volume <= target)) {
+         clearInterval(interval);
+         audio.volume = target;
+       }
+     }, stepTime);
+   }
+
+
+   // Toggle handler
+   function toggleAudio() {
+     if (!audioPlaying) {
+       // Turn ON
+       console.log("Turning audio on");
+       audioPlaying = true;
+       audio.volume = 0;
+       audio.play().catch(err => console.error("Audio failed to play:", err));
+       fadeAudio(targetVolume);
+       btn.textContent = "⏹️ Stop Audio";
+
+     } else {
+       // Turn OFF
+       console.log("Turning audio off");
+       audioPlaying = false;
+       fadeAudio(0);
+
+       setTimeout(() => {
+         if (!audioPlaying) {
+           audio.pause();
+           audio.currentTime = 0;
+         }
+       }, fadeDuration);
+
+       btn.textContent = "▶️ Play Audio";
+     }
+   }
+
+   btn.addEventListener("click", toggleAudio);
+
+ });

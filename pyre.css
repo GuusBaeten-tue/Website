@@ -35,7 +35,6 @@ html, body {
   transform: scale(1.2);
 }
 
-
 :root {
   --fade-duration: 1.6s;
 }
@@ -84,7 +83,7 @@ p2{
   display: none;
 }
 
-#enable-sound {
+#audio-toggle {
   position: fixed;
   bottom: 15px;
   left: 50%;

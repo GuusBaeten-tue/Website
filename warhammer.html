@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="warhammer.css">
+  <link rel="icon" href="images/index/favicon.ico" type="image/x-icon">
+  <title>Warhammer | A PF2e Game</title>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a href="index.html" class="menu-item">Intro</a>
+    <a href="deliantomb.html" class="menu-item">Delian Tomb</a>
+    <a href="pyre.html" class="menu-item">Pyre</a>
+    <a href="witcher.html" class="menu-item">The Witcher</a>
+    <a href="warhammer.html" class="menu-item">Warhammer</a>
+    <a href="Desperados.html" class="menu-item">Desperados</a>
+  </nav>
+
+  <section class="page page1" id="page1">
+    <img class="bg bg1" src="images/warhammer/twinTailedComet.jpg" alt="man in armour staring at a twin tailed comet in the sky.">
+    <div class="content">
+      <h1>Warhammer</h1>
+      <p>
+        the Twin Tailed Comet is usually considered a sign for the growing power of Chaos,
+        although it has also been associated with the heroism of those that stand against it,
+        as it has marked the birth of Sigmar, the hero God of mankind.<br>
+        Now Karl Franz must prove himself worthy of the Warhammer (Ghal Maraz) in the Empire's final struggle.<br>
+        <br>
+        Warpstone, crystallized chaos, falls as comets from the sky, as the Chaos moon is sundered.<br>
+        The great Vermintide from the children of the horned rat has erupted from cracks and crevices all across the known world.<br>
+        <br>
+        Manfred von Carstein has awakened from centuries of slumber and gives rise to the undead hordes. <br>
+        <br>
+        Herdstones are discovered in the dark hearts of forests, ancient caverns, and mountain peaks, uniting the great herd of Beastmen.
+        <br>
+        And Archeon has been crowned the thirteenth and final Everchosen, champion of Chaos, marking the dawn of the Endtimes.<br>
+        <br>
+        Yet, where swords may be deflected, a sharp dagger might pierce through the cracks, and hope remains with our Heroes of the Realms!<br>
+      </p>
+    </div>
+  </section>
+
+<section class="page page2" id="page2">
+  <img class="bg bg2" src="images/warhammer/vermintideGame_wallpaper.jpg" alt="a chaos warrior stands as a leader in front of a skaven horde.">
+  <div class="content">
+    <p>
+      Inspiration: Vermintide II, Darkest Dungeon, Warhammer: the Old World<br>
+      System: Pathfinder 2e<br>
+      Why: players must be able to take it slow, have high AC to defend against hordes, attrition/survival is more important dan pushing on.<br>
+      <br>
+      Gameplay loop: incursion style. Go in, achieve an objective, get out. The objective could be to obtain an object, destroy something, save something. Plenty of options. Players are an elite type team that is sent to turn the tide.<br>
+      A central return point is good. This saves me from building a world and limits it to missions.<br>
+      Players may be able to choose missions against different factions; the Skaven, Chaos warriors, the Green Horde.
+    </p>
+  </div>
+</section>
+
+
+<section class="page page3" id="page3">
+  <div class="content">
+    <h1>Enemy Factions</h1>
+    <p>The End Times are brought due to the influence of a number of evil creatures. See for yourself the horrors of their forms.
+  </div>
+
+  <!-- Army visual -->
+  <section class="army-visual">
+    <div class="army-visual__background"></div>
+    <img class="army-visual__foreground" src="" alt="">
+    <!-- Arrow buttons -->
+    <button class="army-arrow army-arrow-left">&#10094;</button>
+    <button class="army-arrow army-arrow-right">&#10095;</button>
+  </section>
+
+  <!-- Navigation scoped to page3 -->
+  <nav class="army-nav">
+    <ul class="army-nav__list">
+      <li>
+        <button
+          class="army-nav__item active"
+          data-bg="images/warhammer/Enemies/background_skaven.jpg"
+          data-fg="images/warhammer/Enemies/foreground_skaven.webp,images/warhammer/Enemies/foreground_skaven_stormvermin.webp,images/warhammer/Enemies/foreground_skaven_plagueMonk.webp"
+          data-description="The Vermintide are hordes of cunning ratmen that strike in overwhelming numbers.">
+          Vermintide
+        </button>
+      </li>
+      <li>
+        <button
+          class="army-nav__item"
+          data-bg="images/warhammer/Enemies/background_undead.jpg"
+          data-fg="images/warhammer/Enemies/foreground_undead_skeleton.png,images/warhammer/Enemies/foreground_undead_skeletonArmour.jpg,images/warhammer/Enemies/foreground_undead_vampires.jpg"
+          data-description="The Undead are relentless warriors risen from the grave, unyielding and terrifying.">
+          Undead
+        </button>
+      </li>
+      <li>
+        <button
+          class="army-nav__item"
+          data-bg="images/warhammer/Enemies/background_chaos.webp"
+          data-fg="images/warhammer/Enemies/foreground_chaos_raider.webp,images/warhammer/Enemies/foreground_chaos_berserker.jpg,images/warhammer/Enemies/foreground_chaos_warrior.jpg"
+          data-description="The armies of chaos. The Rotblood tribe.">
+          Chaos
+        </button>
+      </li>
+      <li>
+        <button
+          class="army-nav__item"
+          data-bg="images/warhammer/Enemies/background_orcs.jpg"
+          data-fg=""
+          data-description="The one True Git">
+          Green Tide
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="army-description">
+    <p class="army-description__text"></p>
+  </div>
+</section>
+
+
+
+<!-- Sound activation button -->
+<!--
+<audio id="bg-audio" src="audio/the_old_ways.mp3" loop preload="auto"></audio>
+<button id="audio-toggle">▶️ Play Audio</button>
+ -->
+
+<!-- Navigation dots -->
+<div class="nav-dots">
+  <span data-target="#page1" class="dot active"></span>
+  <span data-target="#page2" class="dot"></span>
+  <span data-target="#page3" class="dot"></span>
+</div>
+
+<script src="warhammer.js"></script>
+</body>
+</html>
